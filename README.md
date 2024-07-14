@@ -46,3 +46,69 @@ Se ha hecho con python 3.12.1
       }
   }
 
+## Hacer un Movimiento
+
+- **URL**: `/play/<int:game_id>/<str:player>/<int:position>/`
+- **Método**: `POST`
+- **Descripción**: Realiza un movimiento en el tablero.
+- **Parámetros**:
+  - `game_id`: ID del juego.
+  - `player`: Jugador que hace el movimiento (`X` o `O`).
+  - `position`: Posición en el tablero (0 a 8).
+- **Ejemplo de Respuesta**:
+  
+  ```json
+  {
+      "message": "The game must continue the last player was X",
+      "game": {
+          "id": 1,
+          "board": "X--------",
+          "last_player": "X"
+      }
+  }
+
+## Obtener Información del Juego
+
+- **URL**: `/game_info/<int:game_id>/`
+- **Método**: `GET`
+- **Descripción**: Devuelve el estado actual del juego.
+- **Parámetros**:
+  - `game_id`: ID del juego.
+- **Ejemplo de Respuesta**:
+  
+  ```json
+  {
+        "message": "The game must continue the last player was X",
+       "game": {
+        "id": 1,
+        "board": "X--------",
+        "last_player": "X"
+    }
+  }
+
+## Obtener Información del Juego
+
+- **URL**: `/get_all/`
+- **Método**: `GET`
+- **Descripción**: Devuelve una lista de todos los juegos creados.
+- **Ejemplo de Respuesta**:
+  
+  ```json
+  [
+    {
+        "id": 1,
+        "board": "X--------",
+        "last_player": "X",
+        "is_finished": false,
+        "winner": null
+    },
+    {
+        "id": 2,
+        "board": "O--------",
+        "last_player": "O",
+        "is_finished": false,
+        "winner": null
+    }
+]
+
+Adicionalemente la app cuenta con un sistema de logs tanto por consola como almacenando un archivo
