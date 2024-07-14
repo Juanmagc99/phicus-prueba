@@ -19,9 +19,10 @@ Se ha hecho con python 3.12.1
 4. Aplica la migraciones:
 
    python manage.py makemigrations
+   
    python manage.py migrate
 
-5. Ejecutar los test:
+6. Ejecutar los test:
 
    python manage.py test
    
