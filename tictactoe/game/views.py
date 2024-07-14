@@ -1,13 +1,13 @@
 import json
+import logging
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from .models import Game
 
 
-# Create your views here.
-def index(request):
-    return HttpResponse("Hello  world!")
+
+logger = logging.getLogger('game')
 
 def start_game(request):
     if request.method == 'GET':
@@ -20,6 +20,7 @@ def start_game(request):
                 'last_player': 'None',
             }
         }
+        logger.info(f'New game created with id {new_game.id}')
         return JsonResponse(response_data, status=201)
 
 @csrf_exempt
@@ -28,6 +29,7 @@ def play(request, game_id, player, position):
         game = get_object_or_404(Game, id = game_id)
         try:
             if game.is_finished:
+                logger.warning(f'Attempt to play on finished game {game.id}')
                 if game.winner == 'T':
                     return HttpResponse(f'This game is already over finished without a winner')
                 else:
@@ -42,6 +44,7 @@ def play(request, game_id, player, position):
                         'last_player': game.last_player,
                     }
                 }
+                logger.info(f'Move made in game {game.id} by player {player} at position {position}')
                 return JsonResponse(response_data, status=200)
         except ValueError as e:
             return JsonResponse({'error': str(e)}, status=400)
@@ -59,6 +62,7 @@ def game_info(request, game_id):
                 'winner': game.winner,
                 }
             }
+        logger.debug(f'Game info requested for game {game.id}')
         return JsonResponse(response_data, status=200)
 
 def get_all(request):
@@ -74,4 +78,5 @@ def get_all(request):
                 'winner': game.winner,
             }
             games_json.append(game)
+        logger.debug('All games info requested')
         return JsonResponse(games_json, safe=False, status=200)
