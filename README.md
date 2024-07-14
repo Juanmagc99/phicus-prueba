@@ -1,6 +1,6 @@
 # Proyecto Django Tic-Tac-Toe
 
-Este proyecto implementa el backend de un juego de Tic-Tac-Toe (Tres en raya) utilizando Django. Permite jugar a dos jugadores, validar movimientos, visualizar el estado del tablero y comprobar si se ha producido un ganador. También se han implementado algunos tests para verificar la funcionalidad del modelo y las vistas.
+Este proyecto implementa el backend de un juego de Tic-Tac-Toe (Tres en raya) utilizando Django mediante llamadas rest. Permite jugar a dos jugadores, validar movimientos, visualizar el estado del tablero y comprobar si se ha producido un ganador. También se han implementado algunos tests para verificar la funcionalidad del modelo y las vistas, así como sistema de logs.
 
 Se ha hecho con python 3.12.1
 
@@ -8,14 +8,15 @@ Se ha hecho con python 3.12.1
 
 1. Clona este repositorio:
 
-   [git clone https://github.com/tu-usuario/tic-tac-toe-django.git](https://github.com/Juanmagc99/phicus-prueba.git)
+   [git clone https://github.com/Juanmagc99/phicus-prueba.git](https://github.com/Juanmagc99/phicus-prueba.git)
+   
    cd tictactoe
    
-2. Instala requisitos(se recomienda crear entorno virtual primero):
+3. Instala requisitos(se recomienda crear entorno virtual primero):
 
    pip install -r requirements.txt
 
-3. Aplica la migraciones:
+4. Aplica la migraciones:
 
    python manage.py makemigrations
    python manage.py migrate
@@ -110,5 +111,3 @@ Se ha hecho con python 3.12.1
         "winner": null
     }
 ]
-
-Adicionalemente la app cuenta con un sistema de logs tanto por consola como almacenando un archivo
